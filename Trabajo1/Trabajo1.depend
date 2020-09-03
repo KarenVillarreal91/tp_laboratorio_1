@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1598675388 source:c:\users\karen\desktop\facultad\programación\ejercicios-clases\trabajo1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+	"calculos.h"
+
+1598674790 c:\users\karen\desktop\facultad\programación\ejercicios-clases\trabajo1\calculos.h
+
+1598674790 c:\users\karen\desktop\facultad\programación\ejercicios-clases\trabajo1\menu.h
+
+1598674790 source:c:\users\karen\desktop\facultad\programación\ejercicios-clases\trabajo1\calculos.c
+	<stdio.h>
+	<stdlib.h>
+	"calculos.h"
+
+1598674440 source:c:\users\karen\desktop\facultad\programación\ejercicios-clases\trabajo1\menu.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+
