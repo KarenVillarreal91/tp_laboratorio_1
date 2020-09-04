@@ -40,15 +40,12 @@ int multiplicar(int x, int y)
 
 int factorizar(int x)
 {
-    int resultado;
+    int resultado = 1;
+    int i;
 
-    if(x == 1 || x == 0)
+    for(i = x; i > 0; i--)
     {
-        resultado = 1;
-    }
-    else
-    {
-        resultado = x * factorizar(x - 1);
+        resultado = resultado * i;
     }
 
     return resultado;
@@ -82,6 +79,23 @@ void mostrarResultados(int x,int y, int suma, int resta, float division, int mul
     }
 
     printf("La multiplicacion de %d y %d es: %d\n",x,y,multiplicacion);
-    printf("El factorial de %d es: %d\n",x,factorialUno);
-    printf("El factorial de %d es: %d\n",y,factorialDos);
+
+    if(x > 12 || x < 0)
+    {
+        printf("Error! El numero a factorizar es mayor a 12 o es menor a 0, ingrese otro operando para obtener un resultado.\n");
+    }
+    else
+    {
+        printf("El factorial de %d es: %d\n",x,factorialUno);
+
+    }
+
+    if(y > 12 || y < 0)
+    {
+        printf("Error! El numero a factorizar es mayor a 12 o es menor a 0, ingrese otro operando para obtener un resultado.\n");
+    }
+    else
+    {
+        printf("El factorial de %d es: %d\n",y,factorialDos);
+    }
 }

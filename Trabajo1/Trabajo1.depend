@@ -19,14 +19,14 @@
 	<stdlib.h>
 	"menu.h"
 
-1599182367 source:c:\users\karen\desktop\facultad\programación\tp_laboratorio_1\trabajo1\calculos.c
+1599234131 source:c:\users\karen\desktop\facultad\programación\tp_laboratorio_1\trabajo1\calculos.c
 	<stdio.h>
 	<stdlib.h>
 	"calculos.h"
 
 1599182097 c:\users\karen\desktop\facultad\programación\tp_laboratorio_1\trabajo1\calculos.h
 
-1599182341 source:c:\users\karen\desktop\facultad\programación\tp_laboratorio_1\trabajo1\main.c
+1599234090 source:c:\users\karen\desktop\facultad\programación\tp_laboratorio_1\trabajo1\main.c
 	<stdio.h>
 	<stdlib.h>
 	"menu.h"
@@ -34,7 +34,7 @@
 
 1599181475 c:\users\karen\desktop\facultad\programación\tp_laboratorio_1\trabajo1\menu.h
 
-1599181475 source:c:\users\karen\desktop\facultad\programación\tp_laboratorio_1\trabajo1\menu.c
+1599182421 source:c:\users\karen\desktop\facultad\programación\tp_laboratorio_1\trabajo1\menu.c
 	<stdio.h>
 	<stdlib.h>
 	"menu.h"

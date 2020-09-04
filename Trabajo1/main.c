@@ -42,18 +42,36 @@ int main()
                     suma = sumando(a,b);
                     resta = restando(a,b);
                     multiplicacion = multiplicar(a,b);
-                    factorialUno = factorizar(a);
-                    factorialDos = factorizar(b);
 
-                    if(b == 0)
+                    if(b != 0)
                     {
-                        printf("\nCalculos completados menos division.\n");
+                        division = dividiendo(a,b);
+
                     }
                     else
                     {
-                        division = dividiendo(a,b);
-                        printf("\nCalculos completados.\n");
+                        printf("\nNo se pudo calcular division.\n");
                     }
+
+                    if(b > 12 || b < 0)
+                    {
+                        printf("\nNo se pudo calcular el factorial del segundo operando.\n");
+                    }
+                    else
+                    {
+                        factorialDos = factorizar(b);
+                    }
+
+                    if(a > 12 || a < 0)
+                    {
+                        printf("\nNo se pudo calcular el factorial del primer operando.\n");
+                    }
+                    else
+                    {
+                        factorialUno = factorizar(a);
+                    }
+
+                    printf("\nFinalizado correctamente!\n\n");
                 }
             break;
 
