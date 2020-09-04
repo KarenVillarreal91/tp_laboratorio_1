@@ -19,3 +19,23 @@
 	<stdlib.h>
 	"menu.h"
 
+1599182367 source:c:\users\karen\desktop\facultad\programación\tp_laboratorio_1\trabajo1\calculos.c
+	<stdio.h>
+	<stdlib.h>
+	"calculos.h"
+
+1599182097 c:\users\karen\desktop\facultad\programación\tp_laboratorio_1\trabajo1\calculos.h
+
+1599182341 source:c:\users\karen\desktop\facultad\programación\tp_laboratorio_1\trabajo1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+	"calculos.h"
+
+1599181475 c:\users\karen\desktop\facultad\programación\tp_laboratorio_1\trabajo1\menu.h
+
+1599181475 source:c:\users\karen\desktop\facultad\programación\tp_laboratorio_1\trabajo1\menu.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+

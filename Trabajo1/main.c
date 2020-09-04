@@ -5,35 +5,72 @@
 
 int main()
 {
-    int a;
-    int b;
+    int a = 0;
+    int b = 0;
     int suma;
+    int resta;
+    float division = 0;
+    int multiplicacion;
+    int factorialUno;
+    int factorialDos;
+    int flagOperandoUno = 0;
+    int flagOperandoDos = 0;
     char confirmar;
 
     do
     {
-        switch(menu())
+        switch(menu(a,b,flagOperandoUno,flagOperandoDos))
         {
             case 1:
-                printf("\nIngrese el primer numero: ");
-                scanf("%d",&a);
+                a = pedirOperando(a);
+                flagOperandoUno = 1;
             break;
 
             case 2:
-                printf("\nIngrese el segundo numero: ");
-                scanf("%d",&b);
+                b = pedirOperando(b);
+                flagOperandoDos = 1;
             break;
 
             case 3:
-                suma = sumando(a,b);
+                if(flagOperandoUno == 0 || flagOperandoDos == 0)
+                {
+                    errorOperando();
+
+                }
+                else
+                {
+                    suma = sumando(a,b);
+                    resta = restando(a,b);
+                    multiplicacion = multiplicar(a,b);
+                    factorialUno = factorizar(a);
+                    factorialDos = factorizar(b);
+
+                    if(b == 0)
+                    {
+                        printf("\nCalculos completados menos division.\n");
+                    }
+                    else
+                    {
+                        division = dividiendo(a,b);
+                        printf("\nCalculos completados.\n");
+                    }
+                }
             break;
 
             case 4:
-                printf("%d\n",suma);
+                if(flagOperandoUno == 0 || flagOperandoDos == 0)
+                {
+                    errorOperando();
+                }
+                else
+                {
+                    mostrarResultados(a,b,suma,resta,division,multiplicacion,factorialUno,factorialDos);
+                }
             break;
 
             case 5:
-                printf("\nDesea salir? s/n: \n\n");
+                printf("\nDesea salir? s/n: ");
+                fflush(stdin);
                 scanf("%c",&confirmar);
             break;
         }

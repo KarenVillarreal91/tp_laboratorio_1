@@ -3,4 +3,4 @@
 
 #endif // MENU_H_INCLUDED
 
-int menu();
+int menu(int x, int y, int flagUno, int flagDos);
