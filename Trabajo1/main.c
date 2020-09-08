@@ -35,7 +35,6 @@ int main()
                 if(flagOperandoUno == 0 || flagOperandoDos == 0)
                 {
                     errorOperando();
-
                 }
                 else
                 {
@@ -46,7 +45,6 @@ int main()
                     if(b != 0)
                     {
                         division = dividiendo(a,b);
-
                     }
                     else
                     {
