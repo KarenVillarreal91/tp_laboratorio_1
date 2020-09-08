@@ -46,7 +46,7 @@ int pedirOperando(int x)
 
 void errorOperando()
 {
-    printf("\nError! Ingrese los operandos primero.\n");
+    printf("\nError! Ingrese los operandos primero.\n\n");
 }
 
 void mostrarResultados(int x,int y, int suma, int resta, float division, int multiplicacion, int factorialUno, int factorialDos)
