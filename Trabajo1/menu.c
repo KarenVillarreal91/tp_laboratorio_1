@@ -41,6 +41,12 @@ int pedirOperando(int x)
     printf("\nIngrese el operando: ");
     scanf("%d",&x);
 
+    while(x > 514748360 || x < -514748360)
+    {
+        printf("\nError!! El operando supera las capacidades, ingreselo de nuevo: ");
+        scanf("%d",&x);
+    }
+
     return x;
 }
 
