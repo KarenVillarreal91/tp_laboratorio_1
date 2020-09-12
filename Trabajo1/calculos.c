@@ -43,9 +43,9 @@ int factorizar(int x)
     int resultado = 1;
     int i;
 
-    for(i = x; i > 0; i--)
+    for(i = x; i > 0; i--) //Deciende el operando hasta llegar a 0
     {
-        resultado = resultado * i;
+        resultado = resultado * i; //Se multiplica el acumulador por el operando en decendente
     }
 
     return resultado;
