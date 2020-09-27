@@ -20,13 +20,4 @@ int removeEmployee(Employee list[], int len, int id);
 int sortEmployees(Employee list[], int len, int order);
 int printEmployees(Employee list[], int length);
 
-int menu();
-char confirmar();
-int crearId(Employee list[],int len);
-int crearUnEmpleado(Employee list[],int len);
-void salarios(Employee list[],int tam);
-void informesEmpleados(Employee list[],int tam);
-void modificarEmpleado(Employee list[], int tam, int id);
-int pedirId(Employee list[], int tam);
 
-void hardCodearEmpleados(Employee list[], int tam);

@@ -8,19 +8,27 @@
 
 1600743998 c:\users\karen\desktop\facultad\programación\tp_laboratorio_1\trabajo2\utn.h
 
-1601184157 source:c:\users\karen\desktop\facultad\programación\tp_laboratorio_1\trabajo2\main.c
+1601236730 source:c:\users\karen\desktop\facultad\programación\tp_laboratorio_1\trabajo2\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"ArrayEmployees.h"
-	"utn.h"
 
-1601184157 c:\users\karen\desktop\facultad\programación\tp_laboratorio_1\trabajo2\arrayemployees.h
+1601233879 c:\users\karen\desktop\facultad\programación\tp_laboratorio_1\trabajo2\arrayemployees.h
 
-1601184157 source:c:\users\karen\desktop\facultad\programación\tp_laboratorio_1\trabajo2\arrayemployees.c
+1601235007 source:c:\users\karen\desktop\facultad\programación\tp_laboratorio_1\trabajo2\arrayemployees.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	"FuncionesEmpleados.h"
+
+1601236730 source:c:\users\karen\desktop\facultad\programación\tp_laboratorio_1\trabajo2\funcionesempleados.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"FuncionesEmpleados.h"
+
+1601236783 c:\users\karen\desktop\facultad\programación\tp_laboratorio_1\trabajo2\funcionesempleados.h
 	"ArrayEmployees.h"
 	"utn.h"
 
