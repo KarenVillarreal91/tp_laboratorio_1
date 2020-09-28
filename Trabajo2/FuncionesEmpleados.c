@@ -341,24 +341,3 @@ void modificarEmpleado(Employee list[], int tam, int id)
         printf("\nNo se encontro a un empleado con esa ID.\n\n");
     }
 }
-
-void hardCodearEmpleados(Employee list[], int tam)
-{
-    int arrayId[6] = {0,1,2,3,4,5};
-    char arrayNombre[6][20] = {"Carlos","Jose","Juan","Marta", "Jorge","Norma"};
-    char arrayApellido[6][20] = {"Gomez","Villalba","Sosa","Dermi", "Flores","Garcia"};
-    float arraySalary[6] = {23000,44000,14000,65000,13500,35000};
-    int arraySector[6] = {12,16,10,13,12,15};
-    int arrayIsEmpty[6] = {1,1,1,1,1,1};
-    int i;
-
-    for(i = 0; i < tam; i++)        //Asigna los valores de los array
-    {
-        strcpy(list[i].name,arrayNombre[i]);
-        strcpy(list[i].lastName,arrayApellido[i]);
-        list[i].isEmpty = arrayIsEmpty[i];
-        list[i].id = arrayId[i];
-        list[i].sector = arraySector[i];
-        list[i].salary = arraySalary[i];
-    }
-}

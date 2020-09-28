@@ -14,14 +14,7 @@ int main()
 
     Employee listaEmpleados[TAM];
 
-    //hardCodearEmpleados(listaEmpleados,TAM);      //Para testeos: Se hardcodean los empleados
-
     retorno = initEmployees(listaEmpleados,TAM);         //Inicializa todos los cupos en VACIO
-
-    /*for(int i = 0; i < 6; i++)        //Para testos: Se ponen los primeros 6 hardcodeados en OCUPADO
-    {
-        listaEmpleados[i].isEmpty = OCUPADO;
-    }*/
 
     if(retorno == 0)       //Si se inicializo correctamente se inicia el programa
     {

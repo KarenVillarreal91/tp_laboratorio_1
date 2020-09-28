@@ -87,13 +87,3 @@ int pedirId(Employee list[], int tam);
  *
  */
 int contarEmpleados(Employee list[],int len);
-
-
-/** \brief Hardcodeo para testeos.
- *
- * \param list[] Employee   Lista de todos los empleados.
- * \param tam int   Cupo total de empleados.
- * \return void
- *
- */
-void hardCodearEmpleados(Employee list[], int tam);
