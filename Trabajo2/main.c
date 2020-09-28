@@ -1,11 +1,10 @@
-<<<<<<< HEAD
+//      Karen Villarreal 1B
+//      Trabajo Practico N°2
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "ArrayEmployees.h"
-#define TAM 1000
-#define VACIO 0
-#define OCUPADO 1
+#include "FuncionesEmpleados.h"
 
 int main()
 {
@@ -15,30 +14,30 @@ int main()
 
     Employee listaEmpleados[TAM];
 
-    //hardCodearEmpleados(listaEmpleados,TAM);
+    //hardCodearEmpleados(listaEmpleados,TAM);      //Para testeos: Se hardcodean los empleados
 
-    retorno = initEmployees(listaEmpleados,TAM);
+    retorno = initEmployees(listaEmpleados,TAM);         //Inicializa todos los cupos en VACIO
 
-    /*for(int i = 0; i < 6; i++)
+    /*for(int i = 0; i < 6; i++)        //Para testos: Se ponen los primeros 6 hardcodeados en OCUPADO
     {
         listaEmpleados[i].isEmpty = OCUPADO;
     }*/
 
-    if(retorno == 0)
+    if(retorno == 0)       //Si se inicializo correctamente se inicia el programa
     {
         do
         {
-            switch(menu())
+            switch(menu())      //Menu que devuelve la opcion elegida
             {
-                case 1:
+                case 1: //1. Llama a la funcion para crear un empleado
                     crearUnEmpleado(listaEmpleados,TAM);
                 break;
 
-                case 2:
-                    if(contarEmpleados(listaEmpleados,TAM) > 0)
+                case 2: //2. Llama a las funciones para modificar un empleado
+                    if(contarEmpleados(listaEmpleados,TAM) > 0)        //Si el contador devuelve 0 no deja continuar
                     {
-                        idIngresado = pedirId(listaEmpleados,TAM);
-                        modificarEmpleado(listaEmpleados,TAM,idIngresado);
+                        idIngresado = pedirId(listaEmpleados,TAM);          //Pide el ID, verifica y devuelve
+                        modificarEmpleado(listaEmpleados,TAM,idIngresado);  //Funcion para modificar al empleado
                     }
                     else
                     {
@@ -46,11 +45,11 @@ int main()
                     }
                 break;
 
-                case 3:
-                    if(contarEmpleados(listaEmpleados,TAM) > 0)
+                case 3: //3. Llama a las funciones para borrar un empleado
+                    if(contarEmpleados(listaEmpleados,TAM) > 0)         //Si el contador devuelve 0 no deja continuar
                     {
-                        idIngresado = pedirId(listaEmpleados,TAM);
-                        removeEmployee(listaEmpleados,TAM,idIngresado);
+                        idIngresado = pedirId(listaEmpleados,TAM);          //Pide el ID, verifica y devulve
+                        removeEmployee(listaEmpleados,TAM,idIngresado);     //Funcion para borrar un empleado
                     }
                     else
                     {
@@ -58,8 +57,8 @@ int main()
                     }
                 break;
 
-                case 4:
-                    if(contarEmpleados(listaEmpleados,TAM) > 0)
+                case 4: //4. Llama a la funcion para mostrar a los empleados ordenados y el informe sobre los salarios
+                    if(contarEmpleados(listaEmpleados,TAM) > 0)         //Si el contador devuelve 0 no deja continuar
                     {
                         informesEmpleados(listaEmpleados,TAM);
                     }
@@ -69,13 +68,14 @@ int main()
                     }
                 break;
 
-                case 5:
+                case 5: //5. Salida, confirma que el usario quiere salir del programa
                     respuesta = confirmar();
                 break;
             }
+
             system("pause");
             system("cls");
-        }while(respuesta != 's');
+        }while(respuesta != 's');       //Mientras el usario no responda "s" continua el programa
     }
     else
     {
@@ -84,95 +84,3 @@ int main()
 
     return 0;
 }
-=======
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "ArrayEmployees.h"
-#include "utn.h"
-#define TAM 1000
-#define VACIO 0
-#define OCUPADO 1
-
-int main()
-{
-    int respuesta;
-    int retorno;
-    int idIngresado;
-    int flagIngresado = 0;
-
-    Employee listaEmpleados[TAM];
-
-    hardCodearEmpleados(listaEmpleados,TAM);
-
-    retorno = initEmployees(listaEmpleados,TAM);
-
-    for(int i = 0; i < 6; i++)
-    {
-        listaEmpleados[i].isEmpty = OCUPADO;
-    }
-
-    if(retorno == 0)
-    {
-        do
-        {
-            switch(menu())
-            {
-                case 1:
-                    if(crearUnEmpleado(listaEmpleados,TAM) == 0)
-                    {
-                       flagIngresado = 1;
-                    }
-                break;
-
-                case 2:
-                    if(flagIngresado == 1)
-                    {
-                        idIngresado = pedirId(listaEmpleados,TAM);
-                        modificarEmpleado(listaEmpleados,TAM,idIngresado);
-                    }
-                    else
-                    {
-                        printf("\nError! Ingrese los empleados primero.\n\n");
-                    }
-                break;
-
-                case 3:
-                    if(flagIngresado == 1)
-                    {
-                        idIngresado = pedirId(listaEmpleados,TAM);
-                        removeEmployee(listaEmpleados,TAM,idIngresado);
-                    }
-                    else
-                    {
-                        printf("\nError! Ingrese los empleados primero.\n\n");
-                    }
-                break;
-
-                case 4:
-                    if(flagIngresado == 1)
-                    {
-                        informesEmpleados(listaEmpleados,TAM);
-                    }
-                    else
-                    {
-                        printf("\nError! Ingrese los empleados primero.\n\n");
-                    }
-                break;
-
-                case 5:
-                    respuesta = confirmar();
-                break;
-            }
-            system("pause");
-            system("cls");
-        }while(respuesta != 's');
-    }
-    else
-    {
-        printf("\nHubo un error en cargar el programa.\n\n");
-    }
-
-    return 0;
-}
->>>>>>> 2d7afa1f5a55dfed84b5443a63dff32baa0582a0
