@@ -168,7 +168,7 @@ int printEmployees(Employee list[], int length)
     {
         if(list[i].isEmpty == OCUPADO)
         {
-            printf("%6d     %-10s  %-8s %4c%.3f %6d\n", list[i].id, list[i].name, list[i].lastName,'$', list[i].salary, list[i].sector);
+            printf("%7d     %-10s  %-8s %4c%.3f %6d\n", list[i].id, list[i].name, list[i].lastName,'$', list[i].salary, list[i].sector);
         }
     }
 

@@ -7,10 +7,11 @@
 #include "FuncionesEmpleados.h"
 
 int main()
-{//Error en ID, ordeno, borro y carga (ID duplicada)
+{
     int respuesta;
     int retorno;
     int idIngresado;
+    int crearId = 99;   //Se inicializa un contador en 99 para crear las ID
 
     Employee listaEmpleados[TAM];
 
@@ -23,13 +24,18 @@ int main()
             switch(menu())      //Menu que devuelve la opcion elegida
             {
                 case 1: //1. Llama a la funcion para crear un empleado
-                    crearUnEmpleado(listaEmpleados,TAM);
+                    crearId++;      //Se suma 1 cada vez que ingrese a la opcion 1
+
+                    if(crearUnEmpleado(listaEmpleados,TAM,crearId) != 0)    //Comprueba que se creo correctamente
+                    {
+                        crearId--;      //Si no se completo el ingreso se resta 1
+                    }
                 break;
 
                 case 2: //2. Llama a las funciones para modificar un empleado
                     if(contarEmpleados(listaEmpleados,TAM) > 0)        //Si el contador devuelve 0 no deja continuar
                     {
-                        idIngresado = pedirId(listaEmpleados,TAM);          //Pide el ID, verifica y devuelve
+                        idIngresado = pedirId(listaEmpleados,TAM,crearId);          //Pide el ID, verifica y devuelve
                         modificarEmpleado(listaEmpleados,TAM,idIngresado);  //Funcion para modificar al empleado
                     }
                     else
@@ -41,7 +47,7 @@ int main()
                 case 3: //3. Llama a las funciones para borrar un empleado
                     if(contarEmpleados(listaEmpleados,TAM) > 0)         //Si el contador devuelve 0 no deja continuar
                     {
-                        idIngresado = pedirId(listaEmpleados,TAM);          //Pide el ID, verifica y devulve
+                        idIngresado = pedirId(listaEmpleados,TAM,crearId);          //Pide el ID, verifica y devulve
                         removeEmployee(listaEmpleados,TAM,idIngresado);     //Funcion para borrar un empleado
                     }
                     else

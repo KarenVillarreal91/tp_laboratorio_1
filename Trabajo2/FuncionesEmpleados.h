@@ -21,25 +21,24 @@ int menu();
  */
 char confirmar();
 
-int buscarLibre(Employee list[],int len);
-
-/** \brief Crea el ID del empleado a ingresar.
+/** \brief Busca un espacio libre entre el cupo de empleados.
  *
- * \param list[] Employee    Lista de todos los empleados.
+ * \param list[] Employee   Lista de todos los empleados.
  * \param len int   Cupo total de empleados.
- * \return int Retorna la ID creada.
+ * \return int   Retorna el indice del espacio libre si lo encuentra.
  *
  */
-int crearId(Employee list[],int len);
+int buscarLibre(Employee list[],int len);
 
 /** \brief Pregunta al usuario todo lo necesario para crear el empleado.
  *
  * \param list[] Employee   Lista de todos los empleados.
  * \param len int   Cupo total de empleados.
+ * \param idParam int   ID creado.
  * \return int Retorna 0 si se creo correctamente, -1 si no se creo el empleado.
  *
  */
-int crearUnEmpleado(Employee list[],int len);
+int crearUnEmpleado(Employee list[],int len,int idParam);
 
 /** \brief Calcula y muestra el promedio, total y cuantos superan el promedio de salario.
  *
@@ -75,10 +74,11 @@ void modificarEmpleado(Employee list[], int tam, int id);
  *
  * \param list[] Employee   Lista de todos los empleados.
  * \param tam int   Cupo total de empleados.
+ * \param maximoId int  El maximo ID creado.
  * \return int   Retorna el ID que el usario selecciono.
  *
  */
-int pedirId(Employee list[], int tam);
+int pedirId(Employee list[], int tam, int maximoId);
 
 /** \brief Cuenta los empleados existentes.
  *

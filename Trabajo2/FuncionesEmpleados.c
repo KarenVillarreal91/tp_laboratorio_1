@@ -48,36 +48,15 @@ int buscarLibre(Employee list[],int len)
     return retorno;
 }
 
-int crearId(Employee list[],int len)
-{
-    int i;
-    int id = 999;
-    int retorno = -1;
-
-    for(i = 0; i < len; i++)
-    {
-        id++;
-
-        if(list[i].isEmpty == VACIO)    //Valida que el espacio este vacio y asigna
-        {
-            retorno = id;
-            break;
-        }
-    }
-
-    return retorno;
-}
-
-int pedirId(Employee list[], int tam)
+int pedirId(Employee list[], int tam,int maximoId)
 {
     int i;
     int id;
     int retorno = -1;
-    int maximoId = tam + 1000;
 
     printEmployees(list,tam);       //Muestra todos los empleados existentes
 
-    if(utn_getEntero(&id,1,"\n\nIngrese la ID del empleado: ","\n\nError! ID invalido.\n",1000,maximoId) == 0)      //Pide la ID y valida
+    if(utn_getEntero(&id,1,"\n\nIngrese la ID del empleado: ","\n\nError! ID invalido.\n",100,maximoId) == 0)      //Pide la ID y valida
     {
         for(i = 0; i < tam; i++)
         {
@@ -109,16 +88,13 @@ int contarEmpleados(Employee list[],int len)
     return cantidadEmpleados;
 }
 
-int crearUnEmpleado(Employee list[],int len)
+int crearUnEmpleado(Employee list[],int len,int idParam)
 {
     char name[51];
     char lastName[51];
     float salary;
     int sector;
-    int id;
     int retorno = -1;
-
-    id = crearId(list,len);         //Asigna la ID mediante la funcion
 
     if(utn_getCadena(name,51,3,"Ingrese el nombre: ","\nError! Nombre invalido.\n") == 0)       //Pide todos los datos, verifica y continua
     {
@@ -128,7 +104,7 @@ int crearUnEmpleado(Employee list[],int len)
             {
                 if(utn_getEntero(&sector,3,"Ingrese el sector: ","\nError! Sector invalido (1 a 20).\n",1,20) == 0)
                 {
-                    retorno = addEmployee(list,len,id,name,lastName,salary,sector);      //Asigna los valores ingresados al empleado nuevo
+                    retorno = addEmployee(list,len,idParam,name,lastName,salary,sector);      //Asigna los valores ingresados al empleado nuevo
 
                     if(retorno == 0)        //Si se asigno correctamente informa y finaliza
                     {
@@ -226,15 +202,15 @@ void informesEmpleados(Employee list[],int tam)
                         printf("\n\n%44s\n\n","|Ordenado de forma Ascendente|");
                     }
                 }
-
-                printEmployees(list,tam);       //Imprime los empleados ordenados
-
-                salarios(list,tam);         //Llama a funcion para calcular y mostrar el informe sobre los salarios
             }
             else
             {
-                printf("\nOcurrio un error al ordenar!\n\n");
+                printf("\n   Ocurrio un error al ordenar! Se muestran los empleados actuales.\n\n");
             }
+
+            printEmployees(list,tam);       //Imprime todos los empleados ordenados o no
+
+            salarios(list,tam);         //Llama a funcion para calcular y mostrar el informe sobre los salarios
         }
         else
         {
