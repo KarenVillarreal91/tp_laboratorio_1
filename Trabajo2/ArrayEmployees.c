@@ -20,25 +20,29 @@ int initEmployees(Employee list[], int len)
 
 int addEmployee(Employee list[], int len, int id, char name[],char lastName[],float salary,int sector)
 {
-    Employee auxEmpleado;
-
     int retorno = -1;
     char resp;
+    int indice = buscarLibre(list,len);
 
-    resp = confirmar();         //Confirma que el usario esta seguro de agregar al empleado
-
-    if(resp == 's')         //Si reponde "s" continua y asigna los valores ingresados
+    if(indice != -1)
     {
-        strcpy(auxEmpleado.name,name);
-        strcpy(auxEmpleado.lastName,lastName);
-        auxEmpleado.salary = salary;
-        auxEmpleado.sector = sector;
-        auxEmpleado.id = id;
-        auxEmpleado.isEmpty = OCUPADO;
+        resp = confirmar();         //Confirma que el usario esta seguro de agregar al empleado
 
-        list[id] = auxEmpleado;
+        if(resp == 's')         //Si reponde "s" continua y asigna los valores ingresados
+        {
+            strcpy(list[indice].name,name);
+            strcpy(list[indice].lastName,lastName);
+            list[indice].salary = salary;
+            list[indice].sector = sector;
+            list[indice].id = id;
+            list[indice].isEmpty = OCUPADO;
 
-        retorno = 0;
+            retorno = 0;
+        }
+    }
+    else
+    {
+        printf("\nYa no hay espacios libres para agregar un nuevo empleado.\n\n");
     }
 
     return retorno;
@@ -54,7 +58,7 @@ int findEmployeeById(Employee list[], int len,int id)
         if(list[i].id == id && list[i].isEmpty == OCUPADO)    //Si lo encuentra asigna el retorno
         {
             retorno = i;
-
+            printf("\nIndice: %d\n\n",i);
             break;
         }
     }
@@ -102,49 +106,53 @@ int sortEmployees(Employee list[], int len, int order)
     {
         for(j = i+1; j < len; j++)
         {
-            if(order == 1)          //Para orden 1 (Desendente) compara y cambia valores
+            if(list[i].isEmpty == OCUPADO && list[j].isEmpty == OCUPADO)    //Valida que se ordenen solo los empleados ingresados
             {
-                if(list[i].sector < list[j].sector)     //Compara por sector
+                if(order == 1)         //Para orden 1 (Desendente) compara y cambia valores
                 {
-                   auxEmpleado = list[i];
-                   list[i] = list[j];
-                   list[j] = auxEmpleado;
+                    if(list[i].sector < list[j].sector)     //Compara por sector
+                    {
+                       auxEmpleado = list[i];
+                       list[i] = list[j];
+                       list[j] = auxEmpleado;
+
+                    }
+                    else    //Si los sectores son iguales, compara por apellido
+                    {
+                        if(list[i].sector == list[j].sector && strcmp(list[i].lastName,list[j].lastName) == 1)
+                        {
+                            auxEmpleado = list[i];
+                            list[i] = list[j];
+                            list[j] = auxEmpleado;
+                        }
+                    }
 
                 }
-                else    //Si los sectores son iguales, compara por apellido
+                else        //Para orden 2 (Ascendente) compara y cambia valores
                 {
-                    if(list[i].sector == list[j].sector && strcmp(list[i].lastName,list[j].lastName) == 1)
+                    if(list[i].sector > list[j].sector)         //Por sector
                     {
                         auxEmpleado = list[i];
                         list[i] = list[j];
                         list[j] = auxEmpleado;
+
                     }
-                }
-
-            }
-            else        //Para orden 2 (Ascendente) compara y cambia valores
-            {
-                if(list[i].sector > list[j].sector)         //Por sector
-                {
-                   auxEmpleado = list[i];
-                   list[i] = list[j];
-                   list[j] = auxEmpleado;
-
-                }
-                else        //Por apellido
-                {
-                    if(list[i].sector == list[j].sector && strcmp(list[j].lastName,list[i].lastName) == 1)
+                    else        //Por apellido
                     {
-                        auxEmpleado = list[i];
-                        list[i] = list[j];
-                        list[j] = auxEmpleado;
+                        if(list[i].sector == list[j].sector && strcmp(list[j].lastName,list[i].lastName) == 1)
+                        {
+                            auxEmpleado = list[i];
+                            list[i] = list[j];
+                            list[j] = auxEmpleado;
+                        }
                     }
                 }
-            }
 
-            retorno = 0;
+                retorno = 0;
+            }
         }
     }
+
     return retorno;
 }
 

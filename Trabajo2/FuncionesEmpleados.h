@@ -21,6 +21,7 @@ int menu();
  */
 char confirmar();
 
+int buscarLibre(Employee list[],int len);
 
 /** \brief Crea el ID del empleado a ingresar.
  *

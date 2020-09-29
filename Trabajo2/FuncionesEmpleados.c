@@ -16,6 +16,7 @@ int menu()
     printf(" ----------------------------\n");
     utn_getEntero(&op,0,"\nIngrese la opcion: ","\nError! Opcion invalida.\n\n",1,5);
 
+    system("pause");
     system("cls");
 
     return op;
@@ -30,21 +31,41 @@ char confirmar()
     return resp;
 }
 
-int crearId(Employee list[],int len)
+int buscarLibre(Employee list[],int len)
 {
     int i;
-    int id = -1;
+    int retorno = -1;
 
-    for(i = 1; i <= len; i++)       //Recorre y asigna la ID
+    for(i = 0; i < len; i++)        //Recorre el cupo y asigna el indice
     {
-        if(list[i].isEmpty == VACIO)    //Valida que el espacio este vacio y asigna
+        if(list[i].isEmpty == VACIO)       //Verifica que el espacio este vacio
         {
-            id = i;
+            retorno = i;
             break;
         }
     }
 
-    return id;
+    return retorno;
+}
+
+int crearId(Employee list[],int len)
+{
+    int i;
+    int id = 999;
+    int retorno = -1;
+
+    for(i = 0; i < len; i++)
+    {
+        id++;
+
+        if(list[i].isEmpty == VACIO)    //Valida que el espacio este vacio y asigna
+        {
+            retorno = id;
+            break;
+        }
+    }
+
+    return retorno;
 }
 
 int pedirId(Employee list[], int tam)
@@ -52,10 +73,11 @@ int pedirId(Employee list[], int tam)
     int i;
     int id;
     int retorno = -1;
+    int maximoId = tam + 1000;
 
     printEmployees(list,tam);       //Muestra todos los empleados existentes
 
-    if(utn_getEntero(&id,1,"\n\nIngrese la ID del empleado: ","\n\nError! ID invalido.\n",1,tam) == 0)      //Pide la ID y valida
+    if(utn_getEntero(&id,1,"\n\nIngrese la ID del empleado: ","\n\nError! ID invalido.\n",1000,maximoId) == 0)      //Pide la ID y valida
     {
         for(i = 0; i < tam; i++)
         {
@@ -98,50 +120,43 @@ int crearUnEmpleado(Employee list[],int len)
 
     id = crearId(list,len);         //Asigna la ID mediante la funcion
 
-    if(id != -1)    //Si la ID se creo correctamente continua
+    if(utn_getCadena(name,51,3,"Ingrese el nombre: ","\nError! Nombre invalido.\n") == 0)       //Pide todos los datos, verifica y continua
     {
-        if(utn_getCadena(name,51,3,"Ingrese el nombre: ","\nError! Nombre invalido.\n") == 0)       //Pide todos los datos, verifica y continua
+        if(utn_getCadena(lastName,51,3,"Ingrese el apellido: ","\nError! Apellido invalido.\n") == 0)
         {
-            if(utn_getCadena(lastName,51,3,"Ingrese el apellido: ","\nError! Apellido invalido.\n") == 0)
+            if(utn_getFlotante(&salary,3,"Ingrese el salario: ","\nError! Salario invalido.\n",0,999999999) == 0)
             {
-                if(utn_getFlotante(&salary,3,"Ingrese el salario: ","\nError! Salario invalido.\n",0,999999999) == 0)
+                if(utn_getEntero(&sector,3,"Ingrese el sector: ","\nError! Sector invalido (1 a 20).\n",1,20) == 0)
                 {
-                    if(utn_getEntero(&sector,3,"Ingrese el sector: ","\nError! Sector invalido (1 a 20).\n",1,20) == 0)
-                    {
-                        retorno = addEmployee(list,len,id,name,lastName,salary,sector);      //Asigna los valores ingresados al empleado nuevo
+                    retorno = addEmployee(list,len,id,name,lastName,salary,sector);      //Asigna los valores ingresados al empleado nuevo
 
-                        if(retorno == 0)        //Si se asigno correctamente informa y finaliza
-                        {
-                            printf("\nEmpleado agregado correctamente.\n\n");
-                        }
-                        else
-                        {
-                            printf("\nNo se registrara al empleado.\n\n");
-                        }
+                    if(retorno == 0)        //Si se asigno correctamente informa y finaliza
+                    {
+                        printf("\nEmpleado agregado correctamente.\n\n");
                     }
                     else
                     {
-                      printf("\nSuperaste la cantidad de intentos, intente de nuevo.\n\n");
+                        printf("\nNo se registrara al empleado.\n\n");
                     }
                 }
                 else
                 {
-                   printf("\nSuperaste la cantidad de intentos, intente de nuevo.\n\n");
+                    printf("\nSuperaste la cantidad de intentos, intente de nuevo.\n\n");
                 }
             }
             else
             {
-               printf("\nSuperaste la cantidad de intentos, intente de nuevo.\n\n");
+                printf("\nSuperaste la cantidad de intentos, intente de nuevo.\n\n");
             }
         }
         else
         {
-           printf("\nSuperaste la cantidad de intentos, intente de nuevo.\n\n");
+            printf("\nSuperaste la cantidad de intentos, intente de nuevo.\n\n");
         }
     }
     else
     {
-        printf("\nYa no hay espacios libres para agregar un nuevo empleado.\n\n");
+        printf("\nSuperaste la cantidad de intentos, intente de nuevo.\n\n");
     }
 
     return retorno;

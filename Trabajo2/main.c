@@ -7,7 +7,7 @@
 #include "FuncionesEmpleados.h"
 
 int main()
-{
+{//Error en ID, ordeno, borro y carga (ID duplicada)
     int respuesta;
     int retorno;
     int idIngresado;
