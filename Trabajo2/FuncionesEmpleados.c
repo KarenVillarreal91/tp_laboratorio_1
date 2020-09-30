@@ -100,7 +100,7 @@ int crearUnEmpleado(Employee list[],int len,int idParam)
     {
         if(utn_getCadena(lastName,51,3,"Ingrese el apellido: ","\nError! Apellido invalido.\n") == 0)
         {
-            if(utn_getFlotante(&salary,3,"Ingrese el salario: ","\nError! Salario invalido.\n",0,999999999) == 0)
+            if(utn_getFlotante(&salary,3,"Ingrese el salario: ","\nError! Salario invalido.\n",0,999999) == 0)
             {
                 if(utn_getEntero(&sector,3,"Ingrese el sector: ","\nError! Sector invalido (1 a 20).\n",1,20) == 0)
                 {
@@ -166,11 +166,11 @@ void salarios(Employee list[],int tam)
         }
     }
 
-    printf("\n\n\n%56s\n","--------------- Informes de Salarios ---------------");
+    printf("\n\n\n%57s\n","---------------- Informes de Salarios ----------------");
     printf("%16s %14s %22s\n","Suma Total","Promedio","Superan el promedio");
     printf("%57s\n","------------------------------------------------------");
 
-    printf("%6c%.3f %6c%.3f %11d\n\n\n\n",'$',acumuladorSalario,'$',promedio,contadorSuperanElPromedio);    //Imprime los resultados
+    printf("%7c%.3f %6c%.3f %11d\n\n\n\n",'$',acumuladorSalario,'$',promedio,contadorSuperanElPromedio);    //Imprime los resultados
 }
 
 void informesEmpleados(Employee list[],int tam)
@@ -235,11 +235,11 @@ void modificarEmpleado(Employee list[], int tam, int id)
             system("pause");
             system("cls");
 
-            printf("%56s\n","----------------- Datos del empleado -----------------");          //Imprime los datos del empleado seleccionado
-            printf("%7s %9s %13s %11s %10s\n","ID","Nombre","Apellido","Salario","Sector");
-            printf("%57s\n","------------------------------------------------------");
+            printf("%68s\n","----------------------- Datos del empleado -----------------------");      //Se imprimen los datos del empleado seleccionado
+            printf("%7s %10s %15s %18s %12s\n","ID","Nombre","Apellido","Salario","Sector");
+            printf("%68s\n","------------------------------------------------------------------");
 
-            printf("%6d     %-10s  %-8s %4c%.3f %6d\n", list[indice].id, list[indice].name, list[indice].lastName,'$', list[indice].salary, list[indice].sector);
+            printf("%7d     %-12s  %-12s %6c%.3f   %6d\n", list[indice].id, list[indice].name, list[indice].lastName,'$', list[indice].salary, list[indice].sector);
 
             //Pregunta al usuario que desea modificar mediante opciones y verifica
             if(utn_getEntero(&opcion,0,"\nQue desea modificar?\n 1. Nombre.\n 2. Apellido.\n 3. Salario.\n 4. Sector.\n 5. Salir.\n\nSu opcion: ","\n\nError! Opcion invalida.\n\n",1,5) == 0)
@@ -283,7 +283,7 @@ void modificarEmpleado(Employee list[], int tam, int id)
                     break;
 
                     case 3:  //3. Modifica el salario
-                        if(utn_getFlotante(&empleadoModificado.salary,0,"\nIngrese el salario nuevo: ","\n\nError! Salario invalido.\n\n",0,999999999) == 0)
+                        if(utn_getFlotante(&empleadoModificado.salary,0,"\nIngrese el salario nuevo: ","\n\nError! Salario invalido.\n\n",0,999999) == 0)
                         {
                             respuesta = confirmar();        //Confirma que esta seguro de modificar
 

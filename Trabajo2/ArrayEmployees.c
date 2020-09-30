@@ -58,7 +58,6 @@ int findEmployeeById(Employee list[], int len,int id)
         if(list[i].id == id && list[i].isEmpty == OCUPADO)    //Si lo encuentra asigna el retorno
         {
             retorno = i;
-            printf("\nIndice: %d\n\n",i);
             break;
         }
     }
@@ -160,15 +159,15 @@ int printEmployees(Employee list[], int length)
 {
     int i;
 
-    printf("%56s\n","--------------- Datos de los empleados ---------------");
-    printf("%7s %9s %13s %11s %10s\n","ID","Nombre","Apellido","Salario","Sector");
-    printf("%57s\n","------------------------------------------------------");
+    printf("%68s\n","--------------------- Datos de los empleados ---------------------");
+    printf("%7s %10s %15s %18s %12s\n","ID","Nombre","Apellido","Salario","Sector");
+    printf("%68s\n","------------------------------------------------------------------");
 
     for(i = 0; i < length; i++)         //Recorre el cupo buscando los espacios ocupados e imprime
     {
         if(list[i].isEmpty == OCUPADO)
         {
-            printf("%7d     %-10s  %-8s %4c%.3f %6d\n", list[i].id, list[i].name, list[i].lastName,'$', list[i].salary, list[i].sector);
+            printf("%7d     %-12s  %-12s %6c%.3f   %6d\n", list[i].id, list[i].name, list[i].lastName,'$', list[i].salary, list[i].sector);
         }
     }
 
