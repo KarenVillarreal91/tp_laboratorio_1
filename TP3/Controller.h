@@ -1,4 +1,7 @@
-int controller_menu();
+int controller_mainMenu(int flagCargado);
+int controller_editMenu();
+char confirmar();
+
 int controller_loadFromText(char* path , LinkedList* pArrayListEmployee);
 int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee);
 int controller_addEmployee(LinkedList* pArrayListEmployee);

@@ -45,7 +45,7 @@ void employee_print(LinkedList* pArrayListEmployee,int ind)
     int auxHoras;
     int auxSueldo;
 
-    if(pArrayListEmployee != NULL && ind > 0)
+    if(pArrayListEmployee != NULL && ind > -1)
     {
         pEmpleado = ll_get(pArrayListEmployee,ind);
 
@@ -59,10 +59,10 @@ void employee_print(LinkedList* pArrayListEmployee,int ind)
     }
 }
 
-int employee_createId(LinkedList* pArrayListEmployee)
+int employee_lastId(LinkedList* pArrayListEmployee)
 {
     int i;
-    int idNueva;
+    int ultimaId = 0;
     int len = ll_len(pArrayListEmployee);
 
     Employee* auxEmpleado = employee_new();
@@ -72,9 +72,107 @@ int employee_createId(LinkedList* pArrayListEmployee)
         auxEmpleado = ll_get(pArrayListEmployee,i);
     }
 
-    idNueva = (auxEmpleado->id) + 1;
+    if(len != 0)
+    {
+        ultimaId = auxEmpleado->id;
+    }
 
-    return idNueva;
+    return ultimaId;
+}
+
+int employee_findById(LinkedList* pArrayListEmployee, int id)
+{
+    int len = ll_len(pArrayListEmployee);
+    int indice = -1;
+    int auxId = 0;
+    int i;
+
+    Employee* pAuxEmpleado = employee_new();
+
+    for(i = 0; i < len; i++)
+    {
+        pAuxEmpleado = ll_get(pArrayListEmployee,i);
+
+        if(employee_getId(pAuxEmpleado,&auxId) == 0)
+        {
+            if(auxId == id)
+            {
+                indice = i;
+                break;
+            }
+        }
+    }
+
+    return indice;
+}
+
+int employee_insertToList(LinkedList* pArrayListEmployee,int len)
+{
+    int retorno = 1;
+    int ultimaId;
+    int i;
+
+    Employee* pEmpleado = employee_new();
+
+    for(i = 0; i < len; i++)
+    {
+        pEmpleado = ll_get(pArrayListEmployee,i);
+
+        ultimaId = employee_lastId(pArrayListEmployee);
+
+        pEmpleado->id = ultimaId + (len-i);
+
+        retorno = 0;
+    }
+
+    ll_sort(pArrayListEmployee,employee_CompareById,1);
+
+    return retorno;
+}
+
+int employee_CompareById(void* e1, void* e2)
+{
+    int retorno;
+    int idUno;
+    int idDos;
+
+    employee_getId(e1,&idUno);
+    employee_getId(e2,&idDos);
+
+    if(idUno > idDos)
+    {
+        retorno = 1;
+    }
+    else
+    {
+        retorno = -1;
+    }
+
+    return retorno;
+}
+
+int employee_CompareByName(void* e1, void* e2)
+{
+    int retorno;
+    char nombreUno[128];
+    char nombreDos[128];
+
+    employee_getNombre(e1,nombreUno);
+    employee_getNombre(e2,nombreDos);
+
+    if(strcmpi(nombreUno,nombreDos) > 0)
+    {
+        retorno = 1;
+    }
+    else
+    {
+        if(strcmpi(nombreUno,nombreDos) < 0)
+        {
+            retorno = -1;
+        }
+    }
+
+    return retorno;
 }
 
 // Setters.
@@ -96,7 +194,7 @@ int employee_setNombre(Employee* this,char* nombre)
 {
     int retorno = 1;
 
-    if(nombre != NULL && strlen(nombre) > 2 && strlen(nombre) < 25)
+    if(nombre != NULL && strlen(nombre) > 1 && strlen(nombre) < 25)
     {
         strcpy(this->nombre,nombre);
         retorno = 0;

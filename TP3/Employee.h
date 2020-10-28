@@ -26,9 +26,11 @@ int employee_getHorasTrabajadas(Employee* this,int* horasTrabajadas);
 int employee_setSueldo(Employee* this,int sueldo);
 int employee_getSueldo(Employee* this,int* sueldo);
 
-int employee_CompareByName(Employee* e1, Employee* e2);
-int employee_CompareById(Employee* e1, Employee* e2);
+int employee_CompareByName(void* e1, void* e2);
+int employee_CompareById(void* e1, void* e2);
 
 void employee_print(LinkedList* pArrayListEmployee,int ind);
-int employee_createId(LinkedList* pArrayListEmployee);
+int employee_lastId(LinkedList* pArrayListEmployee);
+int employee_findById(LinkedList* pArrayListEmployee, int id);
+int employee_insertToList(LinkedList* pArrayListEmployee,int len);
 #endif // employee_H_INCLUDED
