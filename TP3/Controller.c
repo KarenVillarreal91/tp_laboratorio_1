@@ -99,20 +99,21 @@ int controller_loadFromText(char* path, LinkedList* pArrayListEmployee)
         printf("\n\n Archivo no encontrado.\n");
     }
 
+    fclose(pArchivo);
+
     return retorno;
 }
 
-
-int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)
+int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
 {
-    int retorno = 1;
-    int len = ll_len(pArrayListEmployee);
+	int retorno = 1;
+	int len = ll_len(pArrayListEmployee);
 
-    FILE* pArchivo = fopen(path,"rb");
+    FILE* pArchivo = fopen(path, "rb");
 
     if(pArchivo != NULL)
     {
-        if(!(parser_EmployeeFromBinary(pArchivo,pArrayListEmployee)))
+        if(!parser_EmployeeFromBinary(pArchivo, pArrayListEmployee))
         {
             printf("\n\n Archivo cargado exitosamente.\n");
             retorno = 0;
@@ -131,8 +132,43 @@ int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)
         printf("\n\n Archivo no encontrado.\n");
     }
 
+    fclose(pArchivo);
+
     return retorno;
 }
+
+/*int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)
+{
+    int retorno = 1;
+    int len = ll_len(pArrayListEmployee);
+
+    FILE* pArchivoBin = fopen(path,"rb");
+
+    if(pArchivoBin != NULL)
+    {
+        if(!(parser_EmployeeFromBinary(pArchivoBin,pArrayListEmployee)))
+        {
+            printf("\n\n Archivo cargado exitosamente.\n");
+            retorno = 0;
+
+            if(len > 0)
+            {
+                if(employee_insertToList(pArrayListEmployee,len) == 0)
+                {
+                    printf("\n\n Se incorporaron los empleados existentes a la lista cargada.\n\n");
+                }
+            }
+        }
+    }
+    else
+    {
+        printf("\n\n Archivo no encontrado.\n");
+    }
+
+    fclose(pArchivoBin);
+
+    return retorno;
+}*/
 
 
 int controller_addEmployee(LinkedList* pArrayListEmployee)
@@ -407,13 +443,91 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
 
 int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
 {
+    Employee* auxEmpleado;
+    FILE* pArchivo = fopen(path,"w");
 
-    return 1;
+    int retorno = 1;
+    int i;
+    int auxId;
+    char auxNombre[50];
+    int auxHoras;
+    int auxSueldo;
+    int len = ll_len(pArrayListEmployee);
+
+    if(pArchivo != NULL)
+    {
+        printf("\n Confirme su eleccion!\n\n");
+
+        if(confirmar() == 's')
+        {
+            for(i = 0; i < len; i++)
+            {
+                auxEmpleado = ll_get(pArrayListEmployee,i);
+
+                if(employee_getId(auxEmpleado,&auxId) == 0 &&
+                    employee_getNombre(auxEmpleado,auxNombre) == 0 &&
+                    employee_getHorasTrabajadas(auxEmpleado,&auxHoras) == 0 &&
+                    employee_getSueldo(auxEmpleado,&auxSueldo) == 0)
+                {
+                    fprintf(pArchivo,"%d,%s,%d,%d\n",auxId,auxNombre,auxHoras,auxSueldo);
+                }
+            }
+
+            printf("\n\n Archivo guardado correctamente en %s!",path);
+            retorno = 0;
+        }
+        else
+        {
+            printf("\n\n No se guardara la lista.");
+        }
+    }
+    else
+    {
+        printf("\n\n Archivo no encontrado.");
+    }
+
+    fclose(pArchivo);
+
+    return retorno;
 }
 
 
 int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
 {
-    return 1;
+    Employee* auxEmpleado;
+    FILE* pArchivo = fopen(path,"wb");
+
+    int retorno = 1;
+    int i;
+    int len = ll_len(pArrayListEmployee);
+
+    if(pArchivo != NULL)
+    {
+        printf("\n Confirme su eleccion!\n\n");
+
+        if(confirmar() == 's')
+        {
+            for(i = 0; i < len; i++)
+            {
+                auxEmpleado = (Employee*) ll_get(pArrayListEmployee,i);
+                fwrite(auxEmpleado,sizeof(Employee),1,pArchivo);
+            }
+
+            printf("\n\n Archivo guardado correctamente en %s!",path);
+            retorno = 0;
+        }
+        else
+        {
+            printf("\n\n No se guardara la lista.");
+        }
+    }
+    else
+    {
+       printf("\n\n Archivo no encontrado.");
+    }
+
+    fclose(pArchivo);
+
+    return retorno;
 }
 
