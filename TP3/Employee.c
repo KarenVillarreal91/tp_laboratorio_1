@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include "Employee.h"
 #include <string.h>
@@ -36,45 +35,32 @@ void employee_delete(Employee* this)
     free(this);     //Libera espacio
 }
 
-void employee_print(LinkedList* pArrayListEmployee,int ind)
-{
-    Employee* pEmpleado;
-
-    int auxId;
-    char auxNombre[128];
-    int auxHoras;
-    int auxSueldo;
-
-    if(pArrayListEmployee != NULL && ind > -1)
-    {
-        pEmpleado = ll_get(pArrayListEmployee,ind);     //Obtiene los datos de un empleado mediante el indice
-
-        if(employee_getId(pEmpleado,&auxId) == 0 &&
-           employee_getNombre(pEmpleado,auxNombre) == 0 &&
-           employee_getHorasTrabajadas(pEmpleado,&auxHoras) == 0 &&
-           employee_getSueldo(pEmpleado,&auxSueldo) == 0)   //Obtiene los datos y los pasa a los auxiliares
-        {
-            printf("%19d     %-16s %-14d %-d\n",auxId,auxNombre,auxHoras,auxSueldo);
-        }
-    }
-}
-
 int employee_lastId(LinkedList* pArrayListEmployee)
 {
     int i;
     int ultimaId = 0;
     int len = ll_len(pArrayListEmployee);
 
-    Employee* auxEmpleado = employee_new();
-
-    for(i = 0; i < len; i++)
+    if(len != 0)
     {
-        auxEmpleado = ll_get(pArrayListEmployee,i);     //Recorre la lista hasta el final
-    }
+        Employee* auxEmpleado = employee_new();
+        Employee* auxEmpleadoDos = employee_new();
 
-    if(len != 0)   //Verifica que haya empleados en la lista
-    {
-        ultimaId = auxEmpleado->id;     //Obtiene la ID del ultimo empleado
+        auxEmpleado = ll_get(pArrayListEmployee,0);     //Recorre la lista hasta el final
+        employee_getId(auxEmpleado,&ultimaId);
+
+        for(i = 0; i < len; i++)
+        {
+            auxEmpleadoDos = ll_get(pArrayListEmployee,i);
+
+            if(employee_CompareById(auxEmpleadoDos,auxEmpleado) == 1)
+            {
+                if(ultimaId < auxEmpleadoDos->id)
+                {
+                    employee_getId(auxEmpleadoDos,&ultimaId);
+                }
+            }
+        }
     }
 
     return ultimaId;
@@ -110,17 +96,20 @@ int employee_insertToList(LinkedList* pArrayListEmployee,int len)
 {
     int retorno = 1;
     int ultimaId;
+    int idNueva;
     int i;
 
     Employee* pEmpleado = employee_new();
+
+    ultimaId = employee_lastId(pArrayListEmployee);     //Obtiene la ultima ID de la lista cargada
 
     for(i = 0; i < len; i++)
     {
         pEmpleado = ll_get(pArrayListEmployee,i);      //Recorre la lista obteniendo cada empleado
 
-        ultimaId = employee_lastId(pArrayListEmployee);     //Obtiene la ultima ID de la lista
+        idNueva = ultimaId + (len-i);   //Calcula la ID nueva apartir de la ultima ID y la cantidad de empleados antiguos
 
-        pEmpleado->id = ultimaId + (len-i);     //Cambia las ID de los empleados existentes a las ultimas ID
+        employee_setId(pEmpleado,idNueva);      //Cambia las ID de los empleados existentes a las ultimas ID
 
         retorno = 0;
     }

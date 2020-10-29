@@ -139,14 +139,6 @@ int employee_CompareById(void* e1, void* e2);
 
 
 
-/** \brief Muestra a un empleado
- *
- * \param pArrayListEmployee LinkedList*    Lista linkeada
- * \param ind int   Indice del empleado
- * \return void
- *
- */
-void employee_print(LinkedList* pArrayListEmployee,int ind);
 
 /** \brief Busca la ultima ID y la retorna
  *
