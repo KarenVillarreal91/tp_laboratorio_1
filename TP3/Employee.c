@@ -7,7 +7,7 @@ Employee* employee_new()
 {
     Employee* pEmpleado;
 
-    pEmpleado = (Employee*) malloc(sizeof(Employee));
+    pEmpleado = (Employee*) malloc(sizeof(Employee));       //Busca espacio con el tamaño de la estructura
 
     return pEmpleado;
 }
@@ -15,13 +15,13 @@ Employee* employee_new()
 Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr,char* sueldoStr)
 {
     Employee* pEmpleado = employee_new();
-
+                                            //Verfica que ningun dato sea NULL
     if((pEmpleado != NULL) && (idStr != NULL) && (nombreStr != NULL) && (horasTrabajadasStr != NULL) && (sueldoStr != NULL))
     {
         if((employee_setId(pEmpleado,atoi(idStr))) ||
             (employee_setNombre(pEmpleado,nombreStr)) ||
             (employee_setHorasTrabajadas(pEmpleado,atoi(horasTrabajadasStr))) ||
-            (employee_setSueldo(pEmpleado,atoi(sueldoStr))))
+            (employee_setSueldo(pEmpleado,atoi(sueldoStr))))    //Convierte los valores a int y los pasa a la lista
         {
             employee_delete(pEmpleado);  //Si alguna de las funciones retorna error, borra al empleado para que no se cargue y evitar inconvenientes.
             pEmpleado = NULL;
@@ -33,7 +33,7 @@ Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajad
 
 void employee_delete(Employee* this)
 {
-    free(this);
+    free(this);     //Libera espacio
 }
 
 void employee_print(LinkedList* pArrayListEmployee,int ind)
@@ -47,12 +47,12 @@ void employee_print(LinkedList* pArrayListEmployee,int ind)
 
     if(pArrayListEmployee != NULL && ind > -1)
     {
-        pEmpleado = ll_get(pArrayListEmployee,ind);
+        pEmpleado = ll_get(pArrayListEmployee,ind);     //Obtiene los datos de un empleado mediante el indice
 
         if(employee_getId(pEmpleado,&auxId) == 0 &&
            employee_getNombre(pEmpleado,auxNombre) == 0 &&
            employee_getHorasTrabajadas(pEmpleado,&auxHoras) == 0 &&
-           employee_getSueldo(pEmpleado,&auxSueldo) == 0)
+           employee_getSueldo(pEmpleado,&auxSueldo) == 0)   //Obtiene los datos y los pasa a los auxiliares
         {
             printf("%19d     %-16s %-14d %-d\n",auxId,auxNombre,auxHoras,auxSueldo);
         }
@@ -69,12 +69,12 @@ int employee_lastId(LinkedList* pArrayListEmployee)
 
     for(i = 0; i < len; i++)
     {
-        auxEmpleado = ll_get(pArrayListEmployee,i);
+        auxEmpleado = ll_get(pArrayListEmployee,i);     //Recorre la lista hasta el final
     }
 
-    if(len != 0)
+    if(len != 0)   //Verifica que haya empleados en la lista
     {
-        ultimaId = auxEmpleado->id;
+        ultimaId = auxEmpleado->id;     //Obtiene la ID del ultimo empleado
     }
 
     return ultimaId;
@@ -91,11 +91,11 @@ int employee_findById(LinkedList* pArrayListEmployee, int id)
 
     for(i = 0; i < len; i++)
     {
-        pAuxEmpleado = ll_get(pArrayListEmployee,i);
+        pAuxEmpleado = ll_get(pArrayListEmployee,i);    //Recorre la lista obtiendo cada empleado
 
-        if(employee_getId(pAuxEmpleado,&auxId) == 0)
+        if(employee_getId(pAuxEmpleado,&auxId) == 0)    //Obtiene la ID del empleado
         {
-            if(auxId == id)
+            if(auxId == id)     //Si coinciden las ID retorna el Indice
             {
                 indice = i;
                 break;
@@ -116,16 +116,16 @@ int employee_insertToList(LinkedList* pArrayListEmployee,int len)
 
     for(i = 0; i < len; i++)
     {
-        pEmpleado = ll_get(pArrayListEmployee,i);
+        pEmpleado = ll_get(pArrayListEmployee,i);      //Recorre la lista obteniendo cada empleado
 
-        ultimaId = employee_lastId(pArrayListEmployee);
+        ultimaId = employee_lastId(pArrayListEmployee);     //Obtiene la ultima ID de la lista
 
-        pEmpleado->id = ultimaId + (len-i);
+        pEmpleado->id = ultimaId + (len-i);     //Cambia las ID de los empleados existentes a las ultimas ID
 
         retorno = 0;
     }
 
-    ll_sort(pArrayListEmployee,employee_CompareById,1);
+    ll_sort(pArrayListEmployee,employee_CompareById,1);     //Ordena por ID para que los empleados antiguos se muevan al final
 
     return retorno;
 }
@@ -136,10 +136,10 @@ int employee_CompareById(void* e1, void* e2)
     int idUno;
     int idDos;
 
-    employee_getId(e1,&idUno);
-    employee_getId(e2,&idDos);
+    employee_getId(e1,&idUno);      //Obtiene la primera ID
+    employee_getId(e2,&idDos);      //Obtiene la segunda ID
 
-    if(idUno > idDos)
+    if(idUno > idDos)     //Retorna si es mayor o menor 1 (mayor) -1 (menor)
     {
         retorno = 1;
     }
@@ -157,10 +157,10 @@ int employee_CompareByName(void* e1, void* e2)
     char nombreUno[128];
     char nombreDos[128];
 
-    employee_getNombre(e1,nombreUno);
-    employee_getNombre(e2,nombreDos);
+    employee_getNombre(e1,nombreUno);      //Obtiene el primer Nombre
+    employee_getNombre(e2,nombreDos);      //Obtiene el segundo Nombre
 
-    if(strcmpi(nombreUno,nombreDos) > 0)
+    if(strcmpi(nombreUno,nombreDos) > 0)    //Retorna si es mayor o menor 1 (mayor) -1 (menor)
     {
         retorno = 1;
     }

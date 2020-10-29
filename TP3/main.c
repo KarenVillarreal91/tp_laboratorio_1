@@ -27,20 +27,20 @@ int main()
     int cantidadEmpleados;
 
     LinkedList* lista;
-    lista = ll_newLinkedList();
+    lista = ll_newLinkedList(); //Se crea una nueva lista
 
     do
     {
-        cantidadEmpleados = ll_len(lista);
+        cantidadEmpleados = ll_len(lista);  //Obtiene la cantidad de empleados actuales
 
-        switch(controller_mainMenu(flagCargado))
+        switch(controller_mainMenu(flagCargado))    //El menu obtiene un flag para mostrar si esta cargado o no un archivo
         {
-            case 1:
+            case 1:    //1. Cargar en texto
                 if(flagCargado == 0)
                 {
                     if(controller_loadFromText("data.csv",lista) == 0)
                     {
-                        flagCargado = 1;
+                        flagCargado = 1;   //Si lo cargo se activa una flag en 1
                     }
                 }
                 else
@@ -49,12 +49,12 @@ int main()
                 }
             break;
 
-            case 2:
+            case 2:    //2. Cargar en Binario
                 if(flagCargado == 0)
                 {
                     if(controller_loadFromBinary("data.bin",lista) == 0)
                     {
-                        flagCargado = 2;
+                        flagCargado = 2;    //Si lo cargo se activa una flag en 2
                     }
                 }
                 else
@@ -63,12 +63,12 @@ int main()
                 }
             break;
 
-            case 3:
+            case 3:    //3. Cargar un solo empleado
                 controller_addEmployee(lista);
             break;
 
-            case 4:
-                if(cantidadEmpleados > 0)
+            case 4:    //4. Edita a un empleado a eleccion
+                if(cantidadEmpleados > 0)   //Si no hay empleados no deja continuar
                 {
                     controller_ListEmployee(lista);
                     controller_editEmployee(lista);
@@ -79,8 +79,8 @@ int main()
                 }
             break;
 
-            case 5:
-                if(cantidadEmpleados > 0)
+            case 5:    //5. Borra un empleado a eleccion
+                if(cantidadEmpleados > 0)   //Si no hay empleados no deja continuar
                 {
                     controller_ListEmployee(lista);
                     controller_removeEmployee(lista);
@@ -91,8 +91,8 @@ int main()
                 }
             break;
 
-            case 6:
-                if(cantidadEmpleados > 0)
+            case 6:    //6. Muestra a todos los empleados
+                if(cantidadEmpleados > 0)   //Si no hay empleados no deja continuar
                 {
                     controller_ListEmployee(lista);
                 }
@@ -102,8 +102,8 @@ int main()
                 }
             break;
 
-            case 7:
-                if(cantidadEmpleados > 0)
+            case 7:    //7. Ordena los empleados a eleccion
+                if(cantidadEmpleados > 0)   //Si no hay empleados no deja continuar
                 {
                     controller_sortEmployee(lista);
                 }
@@ -113,8 +113,8 @@ int main()
                 }
             break;
 
-            case 8:
-                if(flagCargado == 0)
+            case 8:    //8. Guarda los empleados en un archivo .csv
+                if(flagCargado == 0)    //Verifica si se cargo un archivo antes
                 {
                    printf("\n\n Aviso! No hay ninguna lista cargada, si guarda se sobreescribiran los empleados.\n\n");
                 }
@@ -122,8 +122,8 @@ int main()
                 controller_saveAsText("data.csv",lista);
             break;
 
-            case 9:
-                if(flagCargado == 0)
+            case 9:    //9. Guarda los empleados en un archivo .bin
+                if(flagCargado == 0)    //Verifica si se cargo un archivo antes
                 {
                    printf("\n\n Aviso! No hay ninguna lista cargada, si guarda se sobreescribiran los empleados.\n\n");
                 }
@@ -141,6 +141,8 @@ int main()
         system("cls");
 
     }while(respuesta != 's');
+
+    ll_deleteLinkedList(lista);
 
     return 0;
 }
