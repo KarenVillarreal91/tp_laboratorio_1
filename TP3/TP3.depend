@@ -277,16 +277,16 @@
 
 1603443242 c:\users\karen\desktop\facultad\programación\tp_laboratorio_1\tp3\parser.h
 
-1601237634 source:d:\facultad\programación\tp_laboratorio_1\tp3\utn.c
+1603985004 source:d:\facultad\programación\tp_laboratorio_1\tp3\utn.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
 	"utn.h"
 
-1601237634 d:\facultad\programación\tp_laboratorio_1\tp3\utn.h
+1603985308 d:\facultad\programación\tp_laboratorio_1\tp3\utn.h
 
-1603944852 source:d:\facultad\programación\tp_laboratorio_1\tp3\controller.c
+1603985004 source:d:\facultad\programación\tp_laboratorio_1\tp3\controller.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -295,29 +295,29 @@
 	"parser.h"
 	"utn.h"
 
-1603443240 d:\facultad\programación\tp_laboratorio_1\tp3\linkedlist.h
+1603985004 d:\facultad\programación\tp_laboratorio_1\tp3\linkedlist.h
 
-1603949258 d:\facultad\programación\tp_laboratorio_1\tp3\employee.h
+1603985004 d:\facultad\programación\tp_laboratorio_1\tp3\employee.h
 	"LinkedList.h"
 
-1603443242 d:\facultad\programación\tp_laboratorio_1\tp3\parser.h
+1603985308 d:\facultad\programación\tp_laboratorio_1\tp3\parser.h
 
-1603946815 source:d:\facultad\programación\tp_laboratorio_1\tp3\employee.c
+1603985004 source:d:\facultad\programación\tp_laboratorio_1\tp3\employee.c
 	<stdio.h>
 	<stdlib.h>
 	"Employee.h"
 	<string.h>
 
-1603946007 source:d:\facultad\programación\tp_laboratorio_1\tp3\main.c
+1603985004 source:d:\facultad\programación\tp_laboratorio_1\tp3\main.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
 	"Controller.h"
 	"Employee.h"
 
-1603920241 d:\facultad\programación\tp_laboratorio_1\tp3\controller.h
+1603985004 d:\facultad\programación\tp_laboratorio_1\tp3\controller.h
 
-1603940855 source:d:\facultad\programación\tp_laboratorio_1\tp3\parser.c
+1603985004 source:d:\facultad\programación\tp_laboratorio_1\tp3\parser.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
