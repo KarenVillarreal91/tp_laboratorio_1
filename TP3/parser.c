@@ -45,7 +45,7 @@ int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
         {
             auxEmpleado = employee_new();   //Busca espacio en malloc
 
-            if(fread(auxEmpleado,sizeof(Employee),1,pFile) == 1)    //Lee la lista para todos datos a la estructura
+            if(fread(auxEmpleado,sizeof(Employee),1,pFile) == 1)    //Lee la lista y pasa todos datos a la estructura
             {
                 retorno = ll_add(pArrayListEmployee,auxEmpleado);   //Agrega el empleado a la lista linkeada
             }

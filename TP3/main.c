@@ -42,6 +42,10 @@ int main()
                     {
                         flagCargado = 1;   //Si lo cargo se activa una flag en 1
                     }
+                    else
+                    {
+                        printf("\n\n Error! El archivo esta vacio o no existe!");
+                    }
                 }
                 else
                 {
@@ -55,6 +59,10 @@ int main()
                     if(controller_loadFromBinary("data.bin",lista) == 0)
                     {
                         flagCargado = 2;    //Si lo cargo se activa una flag en 2
+                    }
+                    else
+                    {
+                        printf("\n\n Error! El archivo esta vacio o no existe!");
                     }
                 }
                 else

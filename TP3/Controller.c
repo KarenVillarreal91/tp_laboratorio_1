@@ -241,7 +241,7 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
                 switch(controller_editMenu())   //Muestra un menu de opciones
                 {
                     case 1:     //1. Edita el nombre
-                        if(utn_getCadena(auxNombre,128,0,"Ingrese el nuevo nombre del empleado: ","\nError! Nombre invalido.\n\n") == 0)
+                        if(utn_getCadena(auxNombre,128,0,"\n Ingrese el nuevo nombre del empleado: ","\n Error! Nombre invalido.\n\n") == 0)
                         {
                             respuesta = confirmar();
 
@@ -253,7 +253,7 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
                     break;
 
                     case 2:     //2. Edita las horas
-                        if(utn_getEntero(&auxHoras,0,"Ingrese la nueva cantidad de horas trabajadas: ","\nError! Cantidad invalida.\n\n",0,530000) == 0)
+                        if(utn_getEntero(&auxHoras,0,"\n Ingrese la nueva cantidad de horas trabajadas: ","\n Error! Cantidad invalida.\n\n",0,530000) == 0)
                         {
                             respuesta = confirmar();
 
@@ -265,7 +265,7 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
                     break;
 
                     case 3:     //3. Edita el sueldo
-                        if(utn_getEntero(&auxSueldo,0,"Ingrese el nuevo sueldo del empleado: ","\nError! Sueldo invalido.\n\n",0,500000) == 0)
+                        if(utn_getEntero(&auxSueldo,0,"\n Ingrese el nuevo sueldo del empleado: ","\n Error! Sueldo invalido.\n\n",0,500000) == 0)
                         {
                             respuesta = confirmar();
 
@@ -284,14 +284,14 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
 
                 if(estadoModificado == 0)   //Verifica que modifico algo o no 0 (Bien), 1 (Mal), 2 u otro (No informa)
                 {
-                    printf("\nModificado correctamente.\n\n");
+                    printf("\n Modificado correctamente.\n\n");
                     retorno = 0;
                 }
                 else
                 {
                     if(estadoModificado == 1)
                     {
-                        printf("\nNo se pudo modificar al empleado.\n\n");
+                        printf("\n No se pudo modificar al empleado.\n\n");
                     }
                 }
 
@@ -299,7 +299,7 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
         }
         else
         {
-            printf("\nNo se encontro a un empleado con esa ID.\n\n");
+            printf("\n No se encontro a un empleado con esa ID.\n\n");
         }
     }
 
@@ -359,7 +359,7 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
         }
         else
         {
-            printf("\nNo se encontro a un empleado con esa ID.\n\n");
+            printf("\n No se encontro a un empleado con esa ID.\n\n");
         }
     }
 
@@ -410,8 +410,12 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
 
                 if(ll_sort(pArrayListEmployee,employee_CompareByName,modoIngresado) == 0)   //Ordena la lista entera por Nombre e informa
                 {
-                    printf("\n\n Se ordeno correctamente por Nombre, seleccione la opcion de listar empleados para ver los resultados.\n\n");
+                    printf("\n\n Se ordeno correctamente por Nombre, seleccione la opcion de listar empleados para ver los resultados.");
                     retorno = 0;
+                }
+                else
+                {
+                    printf("\n\n Error! No se pudo ordenar la lista!");
                 }
             }
         }
@@ -424,8 +428,12 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
 
                 if(ll_sort(pArrayListEmployee,employee_CompareById,modoIngresado) == 0)     //Ordena la lista entera por ID e informa
                 {
-                    printf("\n\n Se ordeno correctamente por ID, seleccione la opcion de listar empleados para ver los resultados.\n\n");
+                    printf("\n\n Se ordeno correctamente por ID, seleccione la opcion de listar empleados para ver los resultados.");
                     retorno = 0;
+                }
+                else
+                {
+                    printf("\n\n Error! No se pudo ordenar la lista!");
                 }
             }
         }
@@ -438,7 +446,7 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
 int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
 {
     Employee* auxEmpleado;
-    FILE* pArchivo = fopen(path,"w");   //Abre el archivo en modo escritura de texto
+    FILE* pArchivo;
 
     int retorno = 1;
     int i;
@@ -448,11 +456,13 @@ int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
     int auxSueldo;
     int len = ll_len(pArrayListEmployee);   //Busca la cantidad de empleados en la lista
 
-    if(pArchivo != NULL)
-    {
-        printf("\n Confirme su eleccion!\n\n");
+    printf("\n Confirme su eleccion!\n\n");
 
-        if(confirmar() == 's')
+    if(confirmar() == 's')
+    {
+        pArchivo = fopen(path,"w");   //Abre el archivo en modo escritura de texto
+
+        if(pArchivo != NULL)
         {
             for(i = 0; i < len; i++)
             {
@@ -472,15 +482,16 @@ int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
         }
         else
         {
-            printf("\n\n No se guardara la lista.");
+            printf("\n\n Archivo no encontrado.");
         }
+
+        fclose(pArchivo);
     }
     else
     {
-        printf("\n\n Archivo no encontrado.");
+        printf("\n\n No se guardara la lista.");
     }
 
-    fclose(pArchivo);
 
     return retorno;
 }
@@ -489,17 +500,19 @@ int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
 int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
 {
     Employee* auxEmpleado;
-    FILE* pArchivo = fopen(path,"wb");     //Abre el archivo binario en modo escritura
+    FILE* pArchivo;
 
     int retorno = 1;
     int i;
     int len = ll_len(pArrayListEmployee);   //Buscar la cantidad de empleados en la lista
 
-    if(pArchivo != NULL)
-    {
-        printf("\n Confirme su eleccion!\n\n");
+    printf("\n Confirme su eleccion!\n\n");
 
-        if(confirmar() == 's')
+    if(confirmar() == 's')
+    {
+        pArchivo = fopen(path,"wb");     //Abre el archivo en modo escritura de binario
+
+        if(pArchivo != NULL)
         {
             for(i = 0; i < len; i++)
             {
@@ -512,15 +525,15 @@ int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
         }
         else
         {
-            printf("\n\n No se guardara la lista.");
+            printf("\n\n Archivo no encontrado.");
         }
+
+        fclose(pArchivo);
     }
     else
     {
-       printf("\n\n Archivo no encontrado.");
+        printf("\n\n No se guardara la lista.");
     }
-
-    fclose(pArchivo);
 
     return retorno;
 }
