@@ -286,7 +286,7 @@
 
 1601237634 d:\facultad\programación\tp_laboratorio_1\tp3\utn.h
 
-1604062793 source:d:\facultad\programación\tp_laboratorio_1\tp3\controller.c
+1604071826 source:d:\facultad\programación\tp_laboratorio_1\tp3\controller.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -316,7 +316,7 @@
 
 1603979222 d:\facultad\programación\tp_laboratorio_1\tp3\controller.h
 
-1603984169 source:d:\facultad\programación\tp_laboratorio_1\tp3\parser.c
+1604073392 source:d:\facultad\programación\tp_laboratorio_1\tp3\parser.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"

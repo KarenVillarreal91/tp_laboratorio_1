@@ -15,19 +15,19 @@ int controller_mainMenu(int flagCargado)
     if(flagCargado == 0)
     {
         printf(" 1. Cargar los datos de los empleados desde el archivo data.csv (modo texto).\n");
-        printf(" 2. Cargar los datos de los empleados desde el archivo data.csv (modo binario).\n");
+        printf(" 2. Cargar los datos de los empleados desde el archivo data.bin (modo binario).\n");
     }
     else
     {
         if(flagCargado == 1)
         {
             printf(" 1. Cargar los datos de los empleados desde el archivo data.csv (modo texto). [Cargado]\n");
-            printf(" 2. Cargar los datos de los empleados desde el archivo data.csv (modo binario).\n");
+            printf(" 2. Cargar los datos de los empleados desde el archivo data.bin (modo binario).\n");
         }
         else
         {
             printf(" 1. Cargar los datos de los empleados desde el archivo data.csv (modo texto).\n");
-            printf(" 2. Cargar los datos de los empleados desde el archivo data.csv (modo binario). [Cargado]\n");
+            printf(" 2. Cargar los datos de los empleados desde el archivo data.bin (modo binario). [Cargado]\n");
         }
     }
 
@@ -37,7 +37,7 @@ int controller_mainMenu(int flagCargado)
     printf(" 6. Listar empleados.\n");
     printf(" 7. Ordenar empleados.\n");
     printf(" 8. Guardar los datos de los empleados en el archivo data.csv (modo texto).\n");
-    printf(" 9. Guardar los datos de los empleados en el archivo data.csv (modo binario).\n");
+    printf(" 9. Guardar los datos de los empleados en el archivo data.bin (modo binario).\n");
     printf(" 10. Salir.\n");
     printf("--------------------------------------------------\n\n");
 
@@ -404,7 +404,7 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
         if(ordenIngresado == 1) //Si selecciona Nombre entra
         {
             //Pregunta el modo para ordenar
-            if(utn_getEntero(&modoIngresado,1,"\n Modos para ordenar los Nombres: \n 0. Ascendente.\n 1. Descendente.\n\n Ingrese la opcion: ","\n\nError! Modo invalido (0 o 1).\n\n",0,1) == 0)
+            if(utn_getEntero(&modoIngresado,1,"\n Modos para ordenar los Nombres: \n 0. Descendente.\n 1. Ascendente.\n\n Ingrese la opcion: ","\n\nError! Modo invalido (0 o 1).\n\n",0,1) == 0)
             {
                 printf("\n\n Ordenando, espere unos segundos...");
 
@@ -422,7 +422,7 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
         else
         {
             //Pide el modo a ordenar
-            if(utn_getEntero(&modoIngresado,1,"\n Modos para ordenar las ID: \n 0. Ascendente.\n 1. Descendente.\n\n Ingrese la opcion: ","\n\nError! Modo invalido (0 o 1).\n\n",0,1) == 0)
+            if(utn_getEntero(&modoIngresado,1,"\n Modos para ordenar las ID: \n 0. Descendente.\n 1. Ascendente.\n\n Ingrese la opcion: ","\n\nError! Modo invalido (0 o 1).\n\n",0,1) == 0)
             {
                 printf("\n\n Ordenando, espere unos segundos...");
 
