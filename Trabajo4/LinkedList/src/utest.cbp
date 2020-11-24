@@ -33,7 +33,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="../inc/Controller.h" />
 		<Unit filename="../inc/LinkedList.h" />
+		<Unit filename="../inc/parser.h" />
+		<Unit filename="../inc/utn.h" />
 		<Unit filename="../testing/inc/Employee.h" />
 		<Unit filename="../testing/inc/addNodeTest.h" />
 		<Unit filename="../testing/inc/addTest.h" />
@@ -122,16 +125,21 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="../testing/utest.h" />
+		<Unit filename="Controller.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="LinkedList.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Extensions>
-			<code_completion />
-			<debugger />
-			<envvars />
-		</Extensions>
+		<Unit filename="parser.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="utn.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

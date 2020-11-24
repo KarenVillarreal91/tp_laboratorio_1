@@ -4860,7 +4860,8 @@
 
 1604885838 d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\inc\linkedlist.h
 
-1532345166 d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\testing\inc\employee.h
+1606195729 d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\testing\inc\employee.h
+	"../../inc/LinkedList.h"
 
 1532345172 source:d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\testing\src\addtest.c
 	"../../testing/utest.h"
@@ -4910,11 +4911,12 @@
 	"../../inc/LinkedList.h"
 	"../../testing/inc/Employee.h"
 
-1532345172 source:d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\testing\src\employee.c
+1606225568 source:d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\testing\src\employee.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"../inc/Employee.h"
+	"../../inc/utn.h"
 
 1532345172 source:d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\testing\src\getnodetest.c
 	"../../testing/utest.h"
@@ -5079,18 +5081,48 @@
 	<stdlib.h>
 	<string.h>
 
-1605054436 source:d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\src\main.c
+1606226682 source:d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\src\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"../testing/inc/main_test.h"
 	"../inc/LinkedList.h"
+	"../inc/Controller.h"
 
 1532345168 d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\testing\inc\main_test.h
 
-1604965190 source:d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\src\linkedlist.c
+1606225559 source:d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\src\linkedlist.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"../inc/LinkedList.h"
+
+1606227830 source:d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\src\controller.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"../inc/LinkedList.h"
+	"../testing/inc/Employee.h"
+	"../inc/parser.h"
+	"../inc/utn.h"
+
+1603984169 d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\inc\parser.h
+
+1601237634 d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\inc\utn.h
+
+1606164108 source:d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\src\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"../inc/utn.h"
+
+1606164660 source:d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\src\parser.c
+	<stdio.h>
+	<stdlib.h>
+	"../inc/LinkedList.h"
+	"../testing/inc/Employee.h"
+
+1606226682 d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\inc\controller.h
+	"../testing/inc/Employee.h"
 
