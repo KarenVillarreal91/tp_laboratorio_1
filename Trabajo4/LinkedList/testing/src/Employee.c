@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../inc/Employee.h"
+#include "../../inc/Controller.h"
 #include "../../inc/utn.h"
 
 void printEmployee(Employee* p)
@@ -116,6 +117,67 @@ int employee_requestData(Employee* nuevoEmpleado)
     return retorno;
 }
 
+char employee_edit(LinkedList* pArrayListEmployee,Employee* this,int* estadoModificado)
+{
+    char respuestaSalida;
+    char auxNombre[51];
+    char auxApellido[51];
+    int auxSueldo;
+    int auxSector;
+    int indice = ll_indexOf(pArrayListEmployee,this);
+
+    switch(controller_editMenu())   //Muestra un menu de opciones
+    {
+        case 1:     // Edita el nombre
+            if(utn_getCadena(auxNombre,51,0,"\n Ingrese el nuevo nombre del empleado: ","\n Error! Nombre invalido.\n") == 0)
+            {
+                if(confirmar() == 's')
+                {
+                    employee_setName(this,auxNombre);
+                }
+            }
+        break;
+
+        case 2:     // Edita el Apellido
+            if(utn_getCadena(auxApellido,51,0,"\n Ingrese el nuevo apellido del empleado: ","\n Error! Apellido invalido.\n") == 0)
+            {
+                if(confirmar() == 's')
+                {
+                   employee_setLastName(this,auxApellido);
+                }
+            }
+        break;
+
+        case 3:     // Edita el sueldo
+            if(utn_getEntero(&auxSueldo,0,"\n Ingrese el nuevo sueldo del empleado: ","\n Error! Sueldo invalido.\n",0,500000) == 0)
+            {
+                if(confirmar() == 's')
+                {
+                    employee_setSueldo(this,auxSueldo);
+                }
+            }
+        break;
+
+        case 4:     // Edita las horas
+            if(utn_getEntero(&auxSector,0,"\n Ingrese el nuevo sector: ","\n Error! Sector invalida (1-5).\n",1,5) == 0)
+            {
+                if(confirmar() == 's')
+                {
+                    employee_setSector(this,auxSector);
+                }
+            }
+        break;
+
+        case 5:    // Salida
+            respuestaSalida = confirmar();
+        break;
+    }
+
+    *estadoModificado = ll_set(pArrayListEmployee,indice,this); //Setea todos los cambios en la linkedlist
+
+    return respuestaSalida;
+}
+
 int employee_readLastId()
 {
     FILE* pUltimaId = fopen("ultimaid.txt","r");
@@ -132,7 +194,7 @@ int employee_readLastId()
     return auxUltimaId;
 }
 
-int employee_saveLastId(LinkedList* pArrayListEmployee)
+void employee_saveLastId(LinkedList* pArrayListEmployee)
 {
     FILE* pArchivo;
 
@@ -172,8 +234,6 @@ int employee_saveLastId(LinkedList* pArrayListEmployee)
 
     fprintf(pArchivo,"%d",ultimaId);
     fclose(pArchivo);
-
-    return ultimaId;
 }
 
 int employee_findById(LinkedList* pArrayListEmployee, int id)
@@ -321,13 +381,20 @@ int employee_saveCopy(LinkedList* pArrayListEmployee)
     if(leerNombreDeArchivo(nombre,"nombreDelArchivo.txt") == 0) //Obtiene el nombre el archivo
     {
         strcat(nombreFinal,nombre); //Concatena el nombre del archivo al "Copy_of_"
-
-        pArchivo = fopen(nombreFinal,"w");
-
-        retorno = employee_saveAll(pArrayListEmployee,pArchivo);    //Guarda todos los empleados en el archivo
-
-        fclose(pArchivo);
     }
+    else
+    {
+        if(utn_getCadena(nombre,50,1,"\n Se creara un archivo nuevo, ingrese el nombre que quiere ponerle con su extension: ","\n Error! Nombre invalido.\n") == 0)
+        {
+            strcpy(nombreFinal,nombre);
+        }
+    }
+
+    pArchivo = fopen(nombreFinal,"w");
+
+    retorno = employee_saveAll(pArrayListEmployee,pArchivo);    //Guarda todos los empleados en el archivo
+
+    fclose(pArchivo);
 
     return retorno;
 }

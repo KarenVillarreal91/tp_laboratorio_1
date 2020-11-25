@@ -4860,7 +4860,7 @@
 
 1604885838 d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\inc\linkedlist.h
 
-1606195729 d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\testing\inc\employee.h
+1606262816 d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\testing\inc\employee.h
 	"../../inc/LinkedList.h"
 
 1532345172 source:d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\testing\src\addtest.c
@@ -4911,11 +4911,12 @@
 	"../../inc/LinkedList.h"
 	"../../testing/inc/Employee.h"
 
-1606225568 source:d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\testing\src\employee.c
+1606261763 source:d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\testing\src\employee.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"../inc/Employee.h"
+	"../../inc/Controller.h"
 	"../../inc/utn.h"
 
 1532345172 source:d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\testing\src\getnodetest.c
@@ -5081,7 +5082,7 @@
 	<stdlib.h>
 	<string.h>
 
-1606226682 source:d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\src\main.c
+1606250518 source:d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\src\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -5097,7 +5098,7 @@
 	<string.h>
 	"../inc/LinkedList.h"
 
-1606227830 source:d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\src\controller.c
+1606261763 source:d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\src\controller.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -5106,7 +5107,7 @@
 	"../inc/parser.h"
 	"../inc/utn.h"
 
-1603984169 d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\inc\parser.h
+1606258332 d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\inc\parser.h
 
 1601237634 d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\inc\utn.h
 
@@ -5123,6 +5124,6 @@
 	"../inc/LinkedList.h"
 	"../testing/inc/Employee.h"
 
-1606226682 d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\inc\controller.h
+1606252439 d:\facultad\programación\tp_laboratorio_1\trabajo4\linkedlist\inc\controller.h
 	"../testing/inc/Employee.h"
 

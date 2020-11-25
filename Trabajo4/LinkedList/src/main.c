@@ -131,13 +131,13 @@ int main()
             break;
 
             case 10:
-                if(ll_isEmpty(lista) == 0)
+                if(flagCargado == 1)
                 {
                     controller_saveList(lista);
                 }
                 else
                 {
-                    printf("\n La lista esta vacia, cargue algun empleado primero.\n");
+                    printf("\n No hay ningun archivo cargado, cargue uno primero.\n");
                 }
             break;
 

@@ -94,7 +94,7 @@ int controller_loadFile(char* path, LinkedList* pArrayListEmployee)
     {
         if(parser_EmployeeFromText(pArchivo,pArrayListEmployee) == 0)     //Llama a funcion parser y verifica que esta todo correcto
         {
-            employee_saveLastId(pArrayListEmployee);
+            employee_saveLastId(pArrayListEmployee);    //Guarda la ultima ID
             printf("\n\n Archivo cargado exitosamente.\n");
             retorno = 0;
 
@@ -174,15 +174,10 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
 {
     int retorno = 1;
     int estadoModificado;
-    char respuesta;
-    char respuestaSalida = ' ';
+    char respuestaSalida;
     int idIngresado;
-    char auxNombre[51];
-    char auxApellido[51];
-    int auxSueldo;
-    int auxSector;
-    int ultimaId = employee_readLastId();     //Busca la ultima ID de la lista
     int indice;
+    int ultimaId = employee_readLastId();     //Busca la ultima ID de la lista
 
     Employee* empleadoModificado = employee_new();      //Busca espacio en el malloc
 
@@ -206,63 +201,7 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
 
                 employee_print(empleadoModificado);
 
-                switch(controller_editMenu())   //Muestra un menu de opciones
-                {
-                    case 1:     // Edita el nombre
-                        if(utn_getCadena(auxNombre,51,0,"\n Ingrese el nuevo nombre del empleado: ","\n Error! Nombre invalido.\n") == 0)
-                        {
-                            respuesta = confirmar();
-
-                            if(respuesta == 's')
-                            {
-                                estadoModificado = employee_setName(empleadoModificado,auxNombre);
-                            }
-                        }
-                    break;
-
-                    case 2:     // Edita el Apellido
-                        if(utn_getCadena(auxApellido,51,0,"\n Ingrese el nuevo apellido del empleado: ","\n Error! Apellido invalido.\n") == 0)
-                        {
-                            respuesta = confirmar();
-
-                            if(respuesta == 's')
-                            {
-                                estadoModificado = employee_setLastName(empleadoModificado,auxApellido);
-                            }
-                        }
-                    break;
-
-                    case 3:     // Edita el sueldo
-                        if(utn_getEntero(&auxSueldo,0,"\n Ingrese el nuevo sueldo del empleado: ","\n Error! Sueldo invalido.\n",0,500000) == 0)
-                        {
-                            respuesta = confirmar();
-
-                            if(respuesta == 's')
-                            {
-                                estadoModificado = employee_setSueldo(empleadoModificado,auxSueldo);
-                            }
-                        }
-                    break;
-
-                    case 4:     // Edita las horas
-                        if(utn_getEntero(&auxSector,0,"\n Ingrese el nuevo sector: ","\n Error! Sector invalida (1-5).\n",1,5) == 0)
-                        {
-                            respuesta = confirmar();
-
-                            if(respuesta == 's')
-                            {
-                                estadoModificado = employee_setSector(empleadoModificado,auxSector);
-                            }
-                        }
-                    break;
-
-                    case 5:    // Salida
-                        respuestaSalida = confirmar();
-                        estadoModificado = 2;
-                    break;
-                }
-
-                ll_set(pArrayListEmployee,indice,empleadoModificado); //Setea todos los cambios en la linkedlist
+                respuestaSalida = employee_edit(pArrayListEmployee,empleadoModificado,&estadoModificado);
 
                 if(estadoModificado == 0)   //Verifica que modifico algo o no 0 (Bien), 1 (Mal), 2 u otro (No informa)
                 {
@@ -271,10 +210,7 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
                 }
                 else
                 {
-                    if(estadoModificado == 1)
-                    {
-                        printf("\n No se pudo modificar al empleado.\n\n");
-                    }
+                    printf("\n No se pudo modificar al empleado.\n\n");
                 }
 
             }while(respuestaSalida != 's');
@@ -398,7 +334,7 @@ void controller_sortEmployee(LinkedList* pArrayListEmployee)
 
                     if(ll_sort(subLista,employee_CompareByLastName,modoIngresado) == 0)   //Ordena la lista entera por Apellido e informa
                     {
-                        printf("\n\n Se ordeno correctamente por Apellido, seleccione la opcion de listar empleados para ver los resultados.");
+                        printf("\n\n Se ordeno correctamente por Apellido, seleccione la opcion de listar empleados para ver los resultados.\n\n");
 
                         system("pause");
                         system("cls");
@@ -420,7 +356,7 @@ void controller_sortEmployee(LinkedList* pArrayListEmployee)
 
                     if(ll_sort(subLista,employee_CompareById,modoIngresado) == 0)     //Ordena la lista entera por ID e informa
                     {
-                        printf("\n\n Se ordeno correctamente por ID, seleccione la opcion de listar empleados para ver los resultados.");
+                        printf("\n\n Se ordeno correctamente por ID, seleccione la opcion de listar empleados para ver los resultados.\n\n");
 
                         system("pause");
                         system("cls");
