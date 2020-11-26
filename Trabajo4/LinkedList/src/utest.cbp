@@ -34,6 +34,7 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="../inc/Controller.h" />
+		<Unit filename="../inc/Employee.h" />
 		<Unit filename="../inc/LinkedList.h" />
 		<Unit filename="../inc/parser.h" />
 		<Unit filename="../inc/utn.h" />
@@ -126,6 +127,9 @@
 		</Unit>
 		<Unit filename="../testing/utest.h" />
 		<Unit filename="Controller.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Employee.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="LinkedList.c">

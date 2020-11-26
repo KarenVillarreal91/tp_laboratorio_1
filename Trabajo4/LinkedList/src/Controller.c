@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../inc/LinkedList.h"
-#include "../testing/inc/Employee.h"
+#include "../inc/Employee.h"
 #include "../inc/parser.h"
 #include "../inc/utn.h"
 
@@ -33,7 +33,7 @@ int controller_mainMenu(int flagCargado)
     printf(" 11. Salir.\n");
     printf("--------------------------------------------------\n\n");
 
-    utn_getEntero(&op,2,"Ingrese un opcion: ","\nError! Opcion invalida.\n\n",1,10);
+    utn_getEntero(&op,2,"Ingrese un opcion: ","\nError! Opcion invalida.\n\n",1,11);
 
     system("cls");
 
@@ -338,7 +338,9 @@ void controller_sortEmployee(LinkedList* pArrayListEmployee)
 
                         system("pause");
                         system("cls");
-                        printf("\n Confirme si desea guardar una copia de la lista ordenada.\n");
+                        controller_ListEmployee(subLista);
+
+                        printf("\n\n Confirme si desea guardar una copia de la lista ordenada.\n");
                         controller_saveCopyList(subLista);  //Pregunta si quiere guardar una copia de la lista
                     }
                     else
@@ -360,7 +362,9 @@ void controller_sortEmployee(LinkedList* pArrayListEmployee)
 
                         system("pause");
                         system("cls");
-                        printf("\n Confirme si desea guardar una copia de la lista ordenada.\n");
+                        controller_ListEmployee(subLista);
+
+                        printf("\n\n Confirme si desea guardar una copia de la lista ordenada.\n");
                         controller_saveCopyList(subLista);  //Pregunta si quiere guardar una copia de la lista
                     }
                     else
@@ -403,19 +407,19 @@ void controller_saveList(LinkedList* pArrayListEmployee)
 
     if(leerNombreDeArchivo(nombre,"nombreDelArchivo.txt") == 0) //Obtiene el nombre del archivo ingresado
     {
-        pArchivo = fopen(nombre,"w");
-
         printf("\n Aviso! Se sobreescribira el archivo cargado.\n");
 
         if(confirmar() == 's' && pArrayListEmployee != NULL)
         {
+            pArchivo = fopen(nombre,"w");
+
             if(employee_saveAll(pArrayListEmployee,pArchivo) == 0)  //Guarda toda la lista en el archivo
             {
                 printf("\n Se actualizo la lista correctamente!\n");
             }
-        }
 
-        fclose(pArchivo);
+            fclose(pArchivo);
+        }
     }
 }
 
@@ -442,6 +446,7 @@ void controller_replace(LinkedList* pArrayListEmployee)
                ll_push(pArrayListEmployee,indice,pEmpleado) == 0 &&
                ll_indexOf(pArrayListEmployee,pEmpleado) == indice)
             {
+                employee_saveLastId(pArrayListEmployee);
                 printf("\n Se reemplazo al empleado correctamente.\n");
             }
             else

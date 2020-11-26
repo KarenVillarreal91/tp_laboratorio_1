@@ -1,4 +1,4 @@
-#include "../testing/inc/Employee.h"
+#include "../inc/Employee.h"
 
 
 /** \brief Muestra el menu principal y pide una opcion

@@ -153,6 +153,8 @@ int main()
     }while(respuesta != 's');
 
     ll_deleteLinkedList(lista);
+    remove("ultimaid.txt"); //Elimina los archivos temporales al cerrar el programa
+    remove("nombreDelArchivo.txt");
 
     return 0;
 }

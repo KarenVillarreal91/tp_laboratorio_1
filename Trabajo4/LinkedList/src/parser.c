@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../inc/LinkedList.h"
-#include "../testing/inc/Employee.h"
+#include "../inc/Employee.h"
 
 int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
 {
